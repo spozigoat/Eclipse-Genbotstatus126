@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eclipse Gen Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #status {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eclipse Gen Status</h1>
+    <p id="status">Checking status...</p>
+    <div id="content" style="display: none;">
+        <h2>Welcome to Eclipse Gen</h2>
+        <p>This is how the normal website would look when the bot is online.</p>
+    </div>
+    
+    <script>
+        async function checkStatus() {
+            const userId = "1343665355079422003";
+            try {
+                let response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
+                    headers: { "Authorization": "Bot YOUR_BOT_TOKEN" }
+                });
+                if (response.ok) {
+                    document.getElementById("status").style.display = "none";
+                    document.getElementById("content").style.display = "block";
+                } else {
+                    document.getElementById("status").textContent = "Eclipse Gen services are down, we are working on it.";
+                }
+            } catch (error) {
+                document.getElementById("status").textContent = "Eclipse Gen services are down, we are working on it.";
+            }
+        }
+        checkStatus();
+    </script>
+</body>
+</html>
